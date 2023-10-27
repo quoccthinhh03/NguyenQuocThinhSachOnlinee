@@ -1,0 +1,74 @@
+﻿@model IEnumerable<NguyenQuocThinhSachOnlinee.Models.KHACHHANG>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="text-align:center;">QUẢN LÝ THÔNG TIN KHÁCH HÀNG</h2>
+
+
+<p>
+    @Html.ActionLink("Create New", "ThemMoi")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Họ tên
+        </th>
+        <th>
+            Tài Khoản
+        </th>
+        <th>
+            Mật khẩu
+        </th>
+
+        <th>
+            Email
+        </th>
+        <th>
+            Địa chỉ
+        </th>
+        <th>
+            Điện thoại
+        </th>
+        <th>
+            Ngày sinh
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaiKhoan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MatKhau)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DienThoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgaySinh)
+            </td>
+            <td>
+                <a href="@Url.Action("Sua", new { MaKH = item.MaKH })" class="btn btn-warning" role="button">Sửa</a>
+                <a href="@Url.Action("ChiTiet", new { MaKH = item.MaKH })" class="btn btn-primary" role="button">Chi tiết</a>
+                <a href="@Url.Action("Xoa", new { MaKH = item.MaKH })" class="btn btn-danger" role="button">Xóa</a>
+            </td>
+        </tr>
+    }
+
+</table>

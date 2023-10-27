@@ -1,0 +1,123 @@
+﻿@using NguyenQuocThinhSachOnlinee.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<SACH>
+@{
+    ViewBag.Title = "SearchPhanTrang";
+    Layout = null;
+}
+
+<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+
+    @using (Html.BeginForm("SearchPhanTrang", "Search", FormMethod.Get))
+    {
+        <p>
+            <input type="text" name="strSearch" value="@ViewBag.Search" placeholder="Nhập sản phẩm cần tìm" size="100" />
+            <input type="submit" value="Tìm Kiếm" />
+        </p>
+    }
+
+    @if (Model != null)
+    {
+        <h2>KẾT QUẢ TÌM KIẾM</h2>
+        <table class="table">
+            <tr>
+                <th>Tên Sách</th>
+                <th>Ảnh Bìa</th>
+                <th>Ngày Cập Nhật</th>
+                <th>Số Lượng Bán</th>
+                <th>Giá</th>
+                <th>Tên Chủ Đề</th>
+                <th>Tên NXB</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenSach)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AnhBia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayCapNhat)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoLuongBan)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GiaBan)
+                    </td>
+                    <td>
+                        @item.CHUDE.TenChuDe
+                    </td>
+                    <td>
+                        @item.NHAXUATBAN.TenNXB
+                    </td>
+                    <td>
+                        <a href="@Url.Action("ChiTietSach","TrangChu",new { MaSach = item.MaSach })">Chi Tiết Sách</a>
+                    </td>
+                </tr>
+            }
+        </table>
+
+        <div class="horizontal-pages">
+            <ul class="pagination">
+                @if (Model.PageCount > 1)
+                {
+                    for (var i = 1; i <= Model.PageCount; i++)
+                    {
+                        <li class="@(i == Model.PageNumber ? "active" : "")">
+                            <a href="@Url.Action("SearchPhanTrang", new { page = i, strSearch = ViewBag.Search })">@i</a>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+
+
+
+        <style>
+            .horizontal-pages {
+                text-align: center;
+                margin-top: 10px;
+            }
+
+            .pagination {
+                display: inline-block;
+                padding-left: 0;
+                margin: 20px 0;
+                border-radius: 4px;
+            }
+
+                .pagination > li {
+                    display: inline;
+                    margin-right: 5px;
+                }
+
+                    .pagination > li > a,
+                    .pagination > li > span {
+                        position: relative;
+                        float: left;
+                        padding: 6px 12px;
+                        line-height: 1.42857143;
+                        text-decoration: none;
+                        color: #337ab7;
+                        background-color: #fff;
+                        border: 1px solid #ddd;
+                    }
+
+                .pagination > .active > a,
+                .pagination > .active > span,
+                .pagination > .active > a:hover,
+                .pagination > .active > span:hover,
+                .pagination > .active > a:focus,
+                .pagination > .active > span:focus {
+                    z-index: 2;
+                    color: #fff;
+                    background-color: #337ab7;
+                    border-color: #337ab7;
+                    cursor: default;
+                }
+        </style>
+    }
+</div>

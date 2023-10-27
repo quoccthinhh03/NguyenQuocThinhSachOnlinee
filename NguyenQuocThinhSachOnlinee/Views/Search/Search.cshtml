@@ -1,0 +1,106 @@
+﻿@model IEnumerable<NguyenQuocThinhSachOnlinee.Models.SACH>
+@using NguyenQuocThinhSachOnlinee.Models
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    List<CHUDE> cd = ViewBag.cd as List<CHUDE>;
+}
+
+<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+    <h2>KẾT QUẢ TÌM</h2>
+
+    @using (Html.BeginForm("Search", "Search", FormMethod.Get))
+    {
+        <p>
+           
+           
+
+            Tên sản phẩm:
+            <input type="text" name="keyword" value="@ViewBag.Search" placeholder="Nhập sản phẩm cần tìm..." size="30" />
+            <button type="submit">Tìm kiếm</button>
+            </p>
+        }
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().TenSach)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().MoTa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().AnhBia)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().NgayCapNhat)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().SoLuongBan)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().GiaBan)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().MaCD)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().MaNXB)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenSach)
+                    </td>
+                    <td>
+                        @{
+                            if (item.MoTa.Length > 120)
+                            {
+                                @item.MoTa.Substring(0, 120) @Html.Raw("...")
+                            }
+                            else
+                            {
+                                @item.MoTa
+                            }
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AnhBia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayCapNhat)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoLuongBan)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GiaBan)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaCD)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaNXB)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Chi tiết", "ChiTietSach","TrangChu")
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <p>Không có dữ liệu sách để hiển thị.</p>
+    }
+</div>

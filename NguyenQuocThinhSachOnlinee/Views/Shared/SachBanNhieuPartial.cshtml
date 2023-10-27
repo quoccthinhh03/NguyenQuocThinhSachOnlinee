@@ -1,0 +1,45 @@
+﻿@model IEnumerable<NguyenQuocThinhSachOnlinee.Models.SACH>
+<div class="container">
+    @helper Truncate(string s, int length)
+    {
+        if (s.Length < length)
+        {
+            @s
+        }
+        else
+        {
+            @s.Substring(0, length)<text>...</text>
+        }
+    }
+    <h2 class="text-center">SÁCH BÁN NHIỀU</h2>
+    <hr />
+    <div class="row">
+        @foreach (var item in Model.Take(6))
+        {
+            <div class="col-lg-6 col-md-6">
+                <div class="media-object-default">
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="#">
+                                <img class="media-object imgsachbannhieu"
+                                     src="~/Images/@item.AnhBia" alt="placeholder image">
+                                <br />
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading"> <a href="@Url.Action("ChiTietSach", "TrangChu", new { id = item.MaSach })">@item.TenSach</a></h4>
+                            <p class="mota text-justify">@Truncate(item.MoTa, 150)</p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        }
+
+    </div>
+    <!-- row-->
+    <hr>
+</div>
+<!-- /.container-->

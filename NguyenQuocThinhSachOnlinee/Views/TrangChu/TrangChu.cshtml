@@ -1,0 +1,52 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<NguyenQuocThinhSachOnlinee.Models.SACH>
+
+
+@{
+    ViewBag.Title = "TrangChu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+        <h2 class="text-center">SÁCH MỚI</h2>
+        <hr>
+        <div class="row text-center">
+            @foreach (var sach in Model.Take(6))
+            {
+                <div class="col-sm-4 col-md-4 col-lg-4 col-xs-6">
+                    <div class="thumbnail">
+                        <img src="~/Images/@sach.AnhBia" alt="Thumbnail Image" class="img-responsive img-rounded imgbook" style="width: 300px; height: 350px; display: block; margin: auto;">
+                        <div class="caption">
+                            <div style="width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                <a href="@Url.Action("ChiTietSach", "TrangChu", new { id = sach.MaSach })">@sach.TenSach</a>
+                            </div>
+                            <!--<p>@sach.MoTa</p>-->
+                            <p>Mô tả tóm tắt sản phẩm</p>
+                            <p>
+                                <a href="@Url.Action("ThemGioHang","GioHang", new {ms =sach.MaSach,url=Request.Url.ToString()})" class="btn btn-primary" role="button">
+                                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add to Cart
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <nav class="text-center">
+
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) của @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("TrangChu", new { page, currentFilter = ViewBag.currentFilter }))
+    </nav>
+@section QuangCaoPartial{
+    @Html.Action("QuangCaoPartial", "TrangChu")
+}
+
+@section SachBanNhieuPartial{
+    @Html.Action("SachBanNhieuPartial", "TrangChu")
+}

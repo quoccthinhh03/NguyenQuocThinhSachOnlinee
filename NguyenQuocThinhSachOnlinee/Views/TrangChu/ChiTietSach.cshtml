@@ -1,0 +1,34 @@
+﻿@model NguyenQuocThinhSachOnlinee.Models.SACH
+
+@{
+    ViewBag.Title = "ChiTietSach";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+    <img src="~/Images/@Model.AnhBia" alt="Ảnh bìa" style="width: 200px; display: block; margin: 0 auto;">
+    <dl style="text-align:left">
+
+        <dd>
+            @Model.TenSach.ToString().Replace("\n", "<br>")
+        </dd>
+
+        <dd>
+            @Html.Raw(@Model.MoTa.ToString().Replace("\n", "<br>"))
+        </dd>
+        <div style="float: right; font-weight: bold">
+            <dd>
+                Ngày cập nhật: @Html.FormatValue(@Model.NgayCapNhat, "{0:dd/MM/yyyy}")
+            </dd>
+            <dd>
+                Số lượng sách còn lại: @Html.Raw(@Model.SoLuongBan.ToString().Replace("\n", "<br>"))
+            </dd>
+            <dd>
+                Giá bán: <a style="color: blue">@Html.FormatValue(@Model.GiaBan, "{0:#,##0}") VND</a>
+            </dd>
+            <a href="@Url.Action("ThemGioHang","GioHang", new {ms =Model.MaSach,url=Request.Url.ToString()})" class="btn btn-primary" role="button">
+                <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add to Cart
+            </a>
+        </div>
+
+    </dl>
+</div>

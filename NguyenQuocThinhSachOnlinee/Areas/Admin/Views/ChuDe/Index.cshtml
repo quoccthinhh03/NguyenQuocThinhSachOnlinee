@@ -1,0 +1,33 @@
+﻿@model IEnumerable<NguyenQuocThinhSachOnlinee.Models.CHUDE>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h2 style="text-align:center;">QUẢN LÝ THÔNG TIN CHỦ ĐỀ</h2>
+
+<p>
+    @Html.ActionLink("Thêm Mới", "ThemMoi")
+</p>
+<table class="table">
+    <tr>
+        <th>
+           Tên Chủ Đề
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+           @item.TenChuDe
+        </td>
+        <td>
+            <a href="@Url.Action("SuaCD", new { MaCD = item.MaCD })" class="btn btn-warning" role="button">Sửa</a>
+            <a href="@Url.Action("ChiTiet", new { MaCD = item.MaCD })" class="btn btn-primary" role="button">Chi tiết</a>
+            <a href="@Url.Action("Xoa", new { MaCD = item.MaCD })" class="btn btn-danger" role="button">Xóa</a>
+        </td>
+    </tr>
+}
+
+</table>

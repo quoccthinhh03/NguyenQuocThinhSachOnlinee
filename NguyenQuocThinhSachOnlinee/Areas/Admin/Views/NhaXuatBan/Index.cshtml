@@ -1,0 +1,49 @@
+﻿@model IEnumerable <NguyenQuocThinhSachOnlinee.Models.NHAXUATBAN>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="text-align:center;">QUẢN LÝ THÔNG TIN NHÀ XUẤT BẢN</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới", "ThemMoi")
+</p>
+<table class="table">
+    <tr>
+        <th style="text-align:center;width:140px">
+            Tên nhà xuất bản
+        </th>
+        <th style="text-align:center;width:200px">
+           Địa chỉ
+        </th>
+        <th style="text-align:center;width:80px">
+           Điện thoại
+        </th>
+       
+        <th style="text-align:center"></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+               @item.TenNXB
+            </td>
+            <td>
+             @item.DiaChi
+            </td>
+            <td>
+               @item.DienThoai
+            </td>
+            <td>
+                <a href="@Url.Action("SuaNXB", new { MaNXB = item.MaNXB })" class="btn btn-warning" role="button">Sửa</a>
+                <a href="@Url.Action("ChiTiet", new { MaNXB = item.MaNXB })" class="btn btn-primary" role="button">Chi tiết</a>
+                <a href="@Url.Action("Xoa", new { MaNXB = item.MaNXB })" class="btn btn-danger" role="button">Xóa</a>
+            </td>
+        </tr>
+    }
+
+</table>

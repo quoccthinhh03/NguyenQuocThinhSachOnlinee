@@ -1,0 +1,50 @@
+﻿@model NguyenQuocThinhSachOnlinee.Models.NHAXUATBAN
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Chi Tiết</title>
+</head>
+<body>
+    <div>
+        <h4>Chi Tiết Nhà Xuất Bản</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.TenNXB)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TenNXB)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DiaChi)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DiaChi)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DienThoai)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DienThoai)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.MaNXB }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
