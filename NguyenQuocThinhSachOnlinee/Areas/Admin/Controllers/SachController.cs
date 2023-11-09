@@ -38,8 +38,7 @@ namespace NguyenQuocThinhSachOnlinee.Areas.Admin.Controllers
                 ViewBag.ThongBao = "Hãy chọn ảnh bìa";
                 ViewBag.TenSach = f["sTenSach"];
                 ViewBag.MoTa = f["sMoTa"];
-                ViewBag.SoLuong = int.Parse(f["iSoLuong"]);
-                ViewBag.GiaBan = decimal.Parse(f["mGiaBan"]);
+                ViewBag.SGiaBan = decimal.Parse(f["mGiaBan"]);
                 ViewBag.MaCD = new SelectList(db.CHUDEs.ToList().OrderBy(n => n.TenChuDe), "MaCD", "TenChuDe", int.Parse(f["MaCD"]));
                 ViewBag.MaNXB = new SelectList(db.NHAXUATBANs.ToList().OrderBy(n => n.TenNXB), "MaNXB", "TenNXB", int.Parse(f["MaNXB"]));
                 return View();

@@ -13,12 +13,22 @@ namespace NguyenQuocThinhSachOnlinee
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+
+
+            routes.MapRoute(
+                name: "Trang tin",
+                url: "{metatitle}",
+                defaults: new { controller = "TrangChu", action = "TrangTin", metatitle = UrlParameter.Optional },
+                namespaces: new string[] { "NguyenQuocThinhSachOnlinee.Controllers" }
+            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "TrangChu", action = "TrangChu", id = UrlParameter.Optional },
-                namespaces: new string[] { "NguyenQuocThinhSachOnlinee.Controller" }
-            ); ;
+                namespaces: new[] { "NguyenQuocThinhSachOnlinee.Controllers" }
+            );
+
         }
     }
 }

@@ -33,11 +33,14 @@ namespace NguyenQuocThinhSachOnlinee.Controllers
         {
             var sTenDN = collection["TenDN"];
             var sMatkhau = collection["Matkhau"];
-            if (String.IsNullOrEmpty(sTenDN))
+            if (string.IsNullOrEmpty(sTenDN))
+
             {
                 ViewData["Err1"] = "Bạn chưa nhập tên đăng nhập";
             }
-            else if (String.IsNullOrEmpty(sMatkhau))
+            if (string.IsNullOrEmpty(sTenDN))
+
+
             {
                 ViewData["Err2"] = "Phải nhập mật khẩu";
             }

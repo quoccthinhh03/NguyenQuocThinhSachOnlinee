@@ -37,7 +37,7 @@ namespace NguyenQuocThinhSachOnlinee.Areas.Admin.Controllers
             var maCD = Request.QueryString["MaDonHang"];
             return View("SuaCD", Lay1CD(int.Parse(maCD)));
         }
-      
+
 
         [HttpPost]
         public ActionResult SuaCD(FormCollection f)
@@ -45,9 +45,9 @@ namespace NguyenQuocThinhSachOnlinee.Areas.Admin.Controllers
             var maCD = Lay1CD(int.Parse(f["MaDonHang"]));
             maCD.TinhTrangGiaoHang = int.Parse(f["TinhTrangGiaoHang"]);
             maCD.DaThanhToan = bool.Parse(f["DaThanhToan"]);
-            maCD.NgayDat = Convert.ToDateTime(f["NgNgayDataySinh"]);
+            maCD.NgayDat = Convert.ToDateTime(f["NgayDat"]);
             maCD.NgayGiao = Convert.ToDateTime(f["NgayGiao"]);
-            maCD.MaKH= int.Parse(f["MaKH"]);
+            maCD.MaKH = int.Parse(f["MaKH"]);
 
 
             dataContext.SubmitChanges();
@@ -67,7 +67,7 @@ namespace NguyenQuocThinhSachOnlinee.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult Xoa(int ?id)
+        public ActionResult Xoa(int id)
         {
             var sach = dataContext.DONDATHANGs.SingleOrDefault(n => n.MaDonHang == id);
             if (sach == null)
@@ -78,7 +78,7 @@ namespace NguyenQuocThinhSachOnlinee.Areas.Admin.Controllers
             return View(sach);
         }
         [HttpPost, ActionName("Xoa")]
-        public ActionResult DeleteConfirm(int ?id, FormCollection f)
+        public ActionResult DeleteConfirm(int id, FormCollection f)
         {
             var sach = dataContext.DONDATHANGs.SingleOrDefault(n => n.MaDonHang == id);
             if (sach == null)
@@ -92,11 +92,16 @@ namespace NguyenQuocThinhSachOnlinee.Areas.Admin.Controllers
                 ViewBag.ThongBao = "Sách này đang có trong bảng chi tiết đặt hàng <br>" + "Nếu muốn xóa thì phải xóa hết mã sách này trong bảng chi tiết đặt hàng";
                 return View(sach);
             }
-
+            var vietsach = dataContext.VIETSACHes.Where(vs => vs.MaSach == id).ToList();
+            if (vietsach != null)
+            {
+                dataContext.VIETSACHes.DeleteAllOnSubmit(vietsach);
+                dataContext.SubmitChanges();
+            }
             dataContext.DONDATHANGs.DeleteOnSubmit(sach);
             dataContext.SubmitChanges();
             return RedirectToAction("Index");
         }
 
-    }
+    } 
 }

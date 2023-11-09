@@ -35,27 +35,7 @@ namespace NguyenQuocThinhSachOnlinee.Controllers
         }
 
       
-        public ActionResult SearchTheoDanhMuc(string strSearch = null, int maCD = 0)
-        {
-            // 1. Lưu từ khóa tìm kiếm
-            ViewBag.Search = strSearch;
-
-            //2.Tạo câu truy cơ bản
-            var kq = db.SACHes.Select(b => b);
-            //3. Tìm kiếm theo searchString
-            if (!String.IsNullOrEmpty(strSearch))
-                kq = kq.Where(b => b.TenSach.Contains(strSearch));
-            //4. Tìm kiếm theo MaCD
-            if (maCD != 0)
-            {
-                kq = kq.Where(b => b.CHUDE.MaCD == maCD);
-            }
-            //5. Tạo danh sách danh mục để hiển thị ở giao diện View thông qua DropDownList
-            ViewBag.MaCD = new SelectList(db.CHUDEs, "MaCD", "TenChuDe"); // danh sách 
-            
-             //ViewBag.cd = db.CHUDEs.ToList();
-             return View(kq.ToList());
-        }
+     
 
         public ActionResult Group()
         {

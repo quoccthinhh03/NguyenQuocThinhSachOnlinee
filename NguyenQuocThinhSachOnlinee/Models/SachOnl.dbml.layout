@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 13" name="SachOnl">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.625, 13" name="SachOnl">
   <DataContextMoniker Name="/SachOnlDataContext" />
   <nestedChildShapes>
     <classShape Id="997a993e-ce09-4afe-a21b-7f016e482022" absoluteBounds="6.75, 6.375, 2, 1.9631982421875005">
@@ -70,7 +70,7 @@
         <classShapeMoniker Id="040c829c-84e8-4405-a565-f326d73578e0" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.5 : 3.7901025390625); (1.5 : 5.1675439453125); (1.97916666666667 : 5.1675439453125 : JumpStart); (2.14583333333333 : 5.1675439453125 : JumpEnd); (5.26041666666667 : 5.1675439453125 : JumpStart); (5.42708333333333 : 5.1675439453125 : JumpEnd); (6.25 : 5.1675439453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.5 : 3.7901025390625); (1.5 : 5.1675439453125); (6.25 : 5.1675439453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SachOnlDataContext/SACH/SACH_CHITIETDATHANG" />
       <nodes>
         <classShapeMoniker Id="638d2201-36b4-416a-b7a7-e917875d3c6b" />
@@ -84,7 +84,7 @@
         <classShapeMoniker Id="638d2201-36b4-416a-b7a7-e917875d3c6b" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.0625 : 7.75); (2.0625 : 3.7901025390625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.0625 : 7.75); (2.0625 : 3.7901025390625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SachOnlDataContext/NHAXUATBAN/NHAXUATBAN_SACH" />
       <nodes>
         <classShapeMoniker Id="8e509633-74cf-4fa5-9f4b-1cf01336d755" />
@@ -98,12 +98,24 @@
         <classShapeMoniker Id="ee207364-8770-450e-8735-902d01686458" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.34375 : 7.125); (5.34375 : 1.88304993880208); (6.25 : 1.88304993880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.34375 : 7.125); (5.34375 : 1.88304993880208); (6.25 : 1.88304993880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SachOnlDataContext/TACGIA/TACGIA_VIETSACH" />
       <nodes>
         <classShapeMoniker Id="b82f3900-4366-4640-b112-a75051237ae3" />
         <classShapeMoniker Id="ee207364-8770-450e-8735-902d01686458" />
       </nodes>
     </associationConnector>
+    <classShape Id="98d96a1d-b165-4fb5-9a41-2e759dba8163" absoluteBounds="9.375, 0.75, 2, 1.7708968098958329">
+      <DataClassMoniker Name="/SachOnlDataContext/MENU" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bea68aa1-b146-4490-adfb-c5d14b575c75" absoluteBounds="9.39, 1.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fce62714-79e6-4e25-86df-a5bfdfe7d879" absoluteBounds="9.375, 3.75, 2, 1.7708968098958326">
+      <DataClassMoniker Name="/SachOnlDataContext/TRANGTIN" />
+      <nestedChildShapes>
+        <elementListCompartment Id="54332f29-4255-4ceb-bcf8-6e00d84411f2" absoluteBounds="9.39, 4.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

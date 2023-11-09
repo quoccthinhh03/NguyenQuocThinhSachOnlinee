@@ -42,9 +42,34 @@ namespace NguyenQuocThinhSachOnlinee.Controllers
             listSachMoi=listSachMoi.OrderByDescending(n=>n.MaSach).ToList();
             return View(listSachMoi.ToPagedList(pageNumber,pageSize));
         }
+        [ChildActionOnly]
         public ActionResult NavPartial()
         {
-            return PartialView();
+            List<MENU> lst = new List<MENU>();
+            lst = dataContext.MENUs.Where(m => m.ParentId == null).OrderBy(m => m.OrderNumber).ToList();
+            int[] a = new int[lst.Count()];
+            for (int i = 0; i < lst.Count; i++)
+            {
+                var l = dataContext.MENUs.Where(m => m.ParentId == lst[i].Id);
+                a[i] = l.Count();
+            }
+            ViewBag.lst = a;
+            return PartialView(lst);
+        }
+        [ChildActionOnly]
+        public ActionResult LoadChildMenu(int parentId)
+        {
+            List<MENU> lst = new List<MENU>();
+            lst = dataContext.MENUs.Where(m => m.ParentId == parentId).OrderBy(m => m.OrderNumber).ToList();
+            ViewBag.Count = lst.Count;
+            int[] a = new int[lst.Count()];
+            for (int i = 0; i < lst.Count; i++)
+            {
+                var l = dataContext.MENUs.Where(m => m.ParentId == lst[i].Id);
+                a[i] = l.Count();
+            }
+            ViewBag.lst = a;
+            return PartialView("LoadChildMenu", lst);
         }
         public ActionResult QuangCaoPartial()
         {
@@ -105,6 +130,11 @@ namespace NguyenQuocThinhSachOnlinee.Controllers
         public ActionResult loginlogout()
         {
             return PartialView();
+        }
+        public ActionResult TrangTin(string metatitle)
+        {
+            var tt = (from t in dataContext.TRANGTINs where t.MetaTitle == metatitle select t).Single();
+            return View(tt);
         }
     }
 }

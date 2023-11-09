@@ -17,9 +17,120 @@ namespace NguyenQuocThinhSachOnlinee.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
-            return View(dataContext.CHUDEs);
+            return View();
         }
 
+        [HttpGet]
+        public ActionResult DsChuDe()
+        {
+            try
+            {
+                var dsCD = (from cd in dataContext.CHUDEs
+                            select new
+                            {
+                                MaCD = cd.MaCD,
+                                TenCD = cd.TenChuDe
+                            }).ToList();
+                return Json(new { code = 200, dsCD = dsCD, msg = "Lay danh sach chu de thanh cong" },
+                    JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { code = 500, msg = "lay danh sach chu de that bai" + ex.Message },
+                    JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+
+        public JsonResult Detail(int maCD)
+        {
+            try
+            {
+                var cd = (from s in dataContext.CHUDEs
+                          where (s.MaCD == maCD)
+                          select new
+                          {
+                              MaCD = s.MaCD,
+                              TenChuDe = s.TenChuDe
+                          }).SingleOrDefault();
+                //db.CHUDEs.SingleOrDefault(c => c.MaCD == maCD);
+                return Json(new { code = 200, cd = cd, msg = "Lấy thông tin chủ đề thành công" }, JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new { code = 500, msg = "Lấy thông tin chủ đề thất bại." + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+
+
+        }
+
+
+        [HttpPost]
+
+        public JsonResult AddChuDe(string strTenCD)
+        {
+            try
+            {
+                var cd = new CHUDE();
+                cd.TenChuDe = strTenCD;
+                dataContext.CHUDEs.InsertOnSubmit(cd);
+                dataContext.SubmitChanges();
+                return Json(new { code = 200, msg = "Thêm chủ đề thành công." }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { code = 500, msg = "Thêm chủ đề thất bại. LỖI " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+
+
+        }
+
+
+        [HttpPost]
+
+        public JsonResult Update(int maCD, string strTenCD)
+        {
+            try
+            {
+                var cd = dataContext.CHUDEs.SingleOrDefault(c => c.MaCD == maCD);
+                cd.TenChuDe = strTenCD;
+                dataContext.SubmitChanges();
+                return Json(new { code = 200, msg = "sửa chủ đề thành công." }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                {
+                    return Json(new { code = 580, msg = "sửa chủ đề thất bại Lỗi " + ex.Message }, JsonRequestBehavior.AllowGet);
+
+
+                }
+            }
+
+
+        }
+        [HttpPost]
+
+        public JsonResult Delete(int maCD)
+        {
+            try
+            {  
+                var cd = dataContext.CHUDEs.SingleOrDefault(c => c.MaCD == maCD);
+                dataContext.CHUDEs.DeleteOnSubmit(cd);
+               
+                dataContext.SubmitChanges();
+                return Json(new { code = 200, msg = "Xóa chủ đề thành công." }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                {
+                    return Json(new { code = 500, msg = "Xóa chủ đề thành công. Lỗi " + ex.Message }, JsonRequestBehavior.AllowGet);
+
+                }
+            }
+        }
         public ActionResult ThemMoi()
         {
             return View();
@@ -87,6 +198,8 @@ namespace NguyenQuocThinhSachOnlinee.Areas.Admin.Controllers
             // Chuyển hướng về trang danh sách nhà xuất bản sau khi xóa
             return RedirectToAction("Index");
         }
+
+
 
     }
 }

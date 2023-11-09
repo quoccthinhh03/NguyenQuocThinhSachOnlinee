@@ -2,15 +2,15 @@
 @using PagedList.Mvc;
 @model PagedList.PagedList<NguyenQuocThinhSachOnlinee.Models.SACH>
 
-@functions {
-    public string TruncateHtml(string input, int length)
+@helper Truncate(string s, int length)
+{
+    if (s.Length < length)
     {
-        if (input.Length <= length)
-        {
-            return input;
-        }
-        var withoutHtml = System.Text.RegularExpressions.Regex.Replace(input, "<.*?>", string.Empty);
-        return withoutHtml.Substring(0, length);
+        @s
+    }
+    else
+    {
+        @s.Substring(0, length)<text>...</text>
     }
 }
 
@@ -58,11 +58,11 @@
         <tr>
             <td>
                 @*Sử dụng helper để cắt TenSach lấy 50 ký tự*@
-                @TruncateHtml(item.TenSach, 50)
+                @Truncate(item.TenSach, 50)
             </td>
             <td>
                 @*Sử dụng helper để cắt MoTa lấy 70 ký tự*@
-                @Html.Raw(TruncateHtml(item.MoTa, 70))
+                @Html.Raw(Truncate(item.MoTa, 70))
             </td>
             <td>
                 <img src="~/Images/@item.AnhBia" style="width:50px;" />

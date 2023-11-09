@@ -139,9 +139,11 @@
     <Compile Include="Areas\Admin\Controllers\KhachHangController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhaXuatBanController.cs" />
     <Compile Include="Areas\Admin\Controllers\SachController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TrangTinController.cs" />
     <Compile Include="Areas\Index\IndexAreaRegistration.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Areas\Admin\Controllers\String.cs" />
     <Compile Include="Controllers\TrangChuController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -302,17 +304,6 @@
     <Content Include="ckeditor\plugins\about\dialogs\about.js" />
     <Content Include="ckeditor\plugins\about\dialogs\hidpi\logo_ckeditor.png" />
     <Content Include="ckeditor\plugins\about\dialogs\logo_ckeditor.png" />
-    <Content Include="ckeditor\plugins\balloonpanel\skins\kama\balloonpanel.css" />
-    <Content Include="ckeditor\plugins\balloonpanel\skins\moono-lisa\balloonpanel.css" />
-    <Content Include="ckeditor\plugins\balloonpanel\skins\moono-lisa\images\close.png" />
-    <Content Include="ckeditor\plugins\balloonpanel\skins\moono-lisa\images\hidpi\close.png" />
-    <Content Include="ckeditor\plugins\balloonpanel\skins\moono\balloonpanel.css" />
-    <Content Include="ckeditor\plugins\balloonpanel\skins\moono\images\close.png" />
-    <Content Include="ckeditor\plugins\balloonpanel\skins\moono\images\hidpi\close.png" />
-    <Content Include="ckeditor\plugins\balloontoolbar\skins\default.css" />
-    <Content Include="ckeditor\plugins\balloontoolbar\skins\kama\balloontoolbar.css" />
-    <Content Include="ckeditor\plugins\balloontoolbar\skins\moono-lisa\balloontoolbar.css" />
-    <Content Include="ckeditor\plugins\balloontoolbar\skins\moono\balloontoolbar.css" />
     <Content Include="ckeditor\plugins\clipboard\dialogs\paste.js" />
     <Content Include="ckeditor\plugins\colordialog\dialogs\colordialog.css" />
     <Content Include="ckeditor\plugins\colordialog\dialogs\colordialog.js" />
@@ -322,8 +313,6 @@
     <Content Include="ckeditor\plugins\dialog\dialogDefinition.js" />
     <Content Include="ckeditor\plugins\dialog\styles\dialog.css" />
     <Content Include="ckeditor\plugins\div\dialogs\div.js" />
-    <Content Include="ckeditor\plugins\easyimage\dialogs\easyimagealt.js" />
-    <Content Include="ckeditor\plugins\easyimage\styles\easyimage.css" />
     <Content Include="ckeditor\plugins\exportpdf\plugindefinition.js" />
     <Content Include="ckeditor\plugins\exportpdf\tests\authentication.js" />
     <Content Include="ckeditor\plugins\exportpdf\tests\exportpdf.js" />
@@ -360,7 +349,6 @@
     <Content Include="ckeditor\plugins\icons_hidpi.png" />
     <Content Include="ckeditor\plugins\iframe\dialogs\iframe.js" />
     <Content Include="ckeditor\plugins\iframe\images\placeholder.png" />
-    <Content Include="ckeditor\plugins\imagebase\styles\imagebase.css" />
     <Content Include="ckeditor\plugins\image\dialogs\image.js" />
     <Content Include="ckeditor\plugins\image\images\noimage.png" />
     <Content Include="ckeditor\plugins\link\dialogs\anchor.js" />
@@ -536,7 +524,6 @@
     <Content Include="ckeditor\samples\old\dialog\assets\my_dialog.js" />
     <Content Include="ckeditor\samples\old\dialog\dialog.html" />
     <Content Include="ckeditor\samples\old\divreplace.html" />
-    <Content Include="ckeditor\samples\old\easyimage\easyimage.html" />
     <Content Include="ckeditor\samples\old\enterkey\enterkey.html" />
     <Content Include="ckeditor\samples\old\htmlwriter\outputhtml.html" />
     <Content Include="ckeditor\samples\old\index.html" />
@@ -641,6 +628,24 @@
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Sach\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Sach\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Sach\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Sach\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Sach\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ChuDe\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ChuDe\ThemMoi.cshtml" />
+    <Content Include="Areas\Admin\Views\ChuDe\ChiTiet.cshtml" />
+    <Content Include="Areas\Admin\Views\ChuDe\SuaCD.cshtml" />
+    <Content Include="Areas\Admin\Views\ChuDe\Xoa.cshtml" />
+    <Content Include="Areas\Admin\Views\KhachHang\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\KhachHang\ChiTiet.cshtml" />
+    <Content Include="Areas\Admin\Views\KhachHang\Xoa.cshtml" />
+    <Content Include="Areas\Admin\Views\KhachHang\ThemMoi.cshtml" />
+    <Content Include="Areas\Admin\Views\KhachHang\Sua.cshtml" />
+    <Content Include="Areas\Admin\Views\DonHang\ThemMoi.cshtml" />
+    <Content Include="Areas\Admin\Views\DonHang\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DonHang\ChiTiet.cshtml" />
+    <Content Include="Areas\Admin\Views\DonHang\SuaCD.cshtml" />
+    <Content Include="Areas\Admin\Views\DonHang\Xoa.cshtml" />
     <Content Include="ckeditor\bender-runner.config.json" />
     <Content Include="ckeditor\CHANGES.md" />
     <Content Include="ckeditor\LICENSE.md" />
@@ -672,24 +677,12 @@
     <Content Include="ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="ckeditor\SECURITY.md" />
     <Content Include="ckeditor\skins\moono-lisa\readme.md" />
-    <Content Include="Areas\Admin\Views\Sach\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Sach\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Sach\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\ChuDe\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\ChuDe\ThemMoi.cshtml" />
-    <Content Include="Areas\Admin\Views\ChuDe\ChiTiet.cshtml" />
-    <Content Include="Areas\Admin\Views\ChuDe\SuaCD.cshtml" />
-    <Content Include="Areas\Admin\Views\ChuDe\Xoa.cshtml" />
-    <Content Include="Areas\Admin\Views\KhachHang\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\KhachHang\ChiTiet.cshtml" />
-    <Content Include="Areas\Admin\Views\KhachHang\Xoa.cshtml" />
-    <Content Include="Areas\Admin\Views\KhachHang\ThemMoi.cshtml" />
-    <Content Include="Areas\Admin\Views\KhachHang\Sua.cshtml" />
-    <Content Include="Areas\Admin\Views\DonHang\ThemMoi.cshtml" />
-    <Content Include="Areas\Admin\Views\DonHang\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\DonHang\ChiTiet.cshtml" />
-    <Content Include="Areas\Admin\Views\DonHang\SuaCD.cshtml" />
-    <Content Include="Areas\Admin\Views\DonHang\Xoa.cshtml" />
+    <Content Include="Areas\Admin\Views\TrangTin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TrangTin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\TrangTin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\TrangTin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ChuDee\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ChuDee\Detail.cshtml" />
     <None Include="Models\SachOnl.dbml.layout">
       <DependentUpon>SachOnl.dbml</DependentUpon>
     </None>
@@ -788,6 +781,8 @@
     <Content Include="Views\GioHang\DatHang.cshtml" />
     <Content Include="Views\GioHang\XacNhanDonHang.cshtml" />
     <Content Include="Views\Shared\loginlogout.cshtml" />
+    <Content Include="Views\TrangChu\TrangTin.cshtml" />
+    <Content Include="Views\Shared\LoadChildMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
