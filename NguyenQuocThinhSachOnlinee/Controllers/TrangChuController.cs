@@ -109,7 +109,7 @@ namespace NguyenQuocThinhSachOnlinee.Controllers
 
         }
 
-        public ActionResult SachTheoChuDe(int ? id, int ? page)
+        public ActionResult SachTheoChuDe(int  id, int ? page)
         {
            ViewBag.MaCD= id;
             int iSize = 2;
@@ -119,7 +119,7 @@ namespace NguyenQuocThinhSachOnlinee.Controllers
         }
 
 
-        public ActionResult SachTheoNhaXuatBan(int? id, int? page)
+        public ActionResult SachTheoNhaXuatBan(int id, int? page)
         {
             ViewBag.MaCD = id;
             int iSize = 2;

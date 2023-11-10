@@ -15,11 +15,19 @@
             }
             else
             {
-                <li>
-                    <a href="~/@item.MenuLink" class="list-group-item">@item.MenuName</a>
-                </li>
+                if (item.MenuLink.Contains("://"))
+                {
+                    <li><a href="@item.MenuLink">@item.MenuName</a></li>
+                }
+
+                else
+                {
+                    <li><a href="~/@item.MenuLink">@item.MenuName</a></li>
+                }
             }
+
             i++;
+
         }
     @:</ul>
 }

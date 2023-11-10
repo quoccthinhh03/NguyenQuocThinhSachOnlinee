@@ -19,10 +19,18 @@
                         if (ViewBag.lst[i] != 0)
                         {
                             <li class="dropdown">
-                                <a href="@item.MenuLink" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">@item.MenuName<span class="caret"></span></a>
+                                <a href="@item.MenuLink" class="dropdown-toggle"
+                                   data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                    @item.MenuName<span class="caret"></span>
+                                </a>
                                 @Html.Action("LoadChildMenu", "TrangChu", new { parentId = item.Id })
                             </li>
                         }
+                        if (item.MenuLink.Contains("://"))
+                        {
+                            <li><a href="@item.MenuLink">@item.MenuName</a></li>
+                        }
+
                         else
                         {
                             <li><a href="~/@item.MenuLink">@item.MenuName</a></li>

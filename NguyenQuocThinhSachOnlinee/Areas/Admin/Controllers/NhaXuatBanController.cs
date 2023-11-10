@@ -16,9 +16,120 @@ namespace NguyenQuocThinhSachOnlinee.Areas.Admin.Controllers
         // GET: Admin/NhaXuatBan
         public ActionResult Index()
         {
-            return View(dataContext.NHAXUATBANs);
+            return View();
         }
-       
+        [HttpGet]
+        public ActionResult DsNXB()
+        {
+            try
+            {
+                var dsCD = (from cd in dataContext.NHAXUATBANs
+                            select new
+                            {
+                                MaCD = cd.MaNXB,
+                                TenCD = cd.TenNXB
+                            }).ToList();
+                return Json(new { code = 200, dsCD = dsCD, msg = "Lay danh sach nxb thanh cong" },
+                    JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { code = 500, msg = "lay danh sach nxb that bai" + ex.Message },
+                    JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+
+        public JsonResult Detail(int maCD)
+        {
+            try
+            {
+                var cd = (from s in dataContext.NHAXUATBANs
+                          where (s.MaNXB == maCD)
+                          select new
+                          {
+                              MaCD = s.MaNXB,
+                              TenChuDe = s.TenNXB
+                          }).SingleOrDefault();
+                //db.CHUDEs.SingleOrDefault(c => c.MaCD == maCD);
+                return Json(new { code = 200, cd = cd, msg = "Lấy thông tin nxb thành công" }, JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new { code = 500, msg = "Lấy thông tin nxb thất bại." + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+
+
+        }
+
+
+        [HttpPost]
+
+        public JsonResult AddChuDe(string strTenCD)
+        {
+            try
+            {
+                var cd = new NHAXUATBAN();
+                cd.TenNXB = strTenCD;
+                dataContext.NHAXUATBANs.InsertOnSubmit(cd);
+                dataContext.SubmitChanges();
+                return Json(new { code = 200, msg = "Thêm nxb thành công." }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { code = 500, msg = "Thêm nxb thất bại. LỖI " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+
+
+        }
+
+
+        [HttpPost]
+
+        public JsonResult Update(int maCD, string strTenCD)
+        {
+            try
+            {
+                var cd = dataContext.NHAXUATBANs.SingleOrDefault(c => c.MaNXB == maCD);
+                cd.TenNXB = strTenCD;
+                dataContext.SubmitChanges();
+                return Json(new { code = 200, msg = "sửa nxb thành công." }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                {
+                    return Json(new { code = 580, msg = "sửa nxb thất bại Lỗi " + ex.Message }, JsonRequestBehavior.AllowGet);
+
+
+                }
+            }
+
+
+        }
+        [HttpPost]
+
+        public JsonResult Delete(int maCD)
+        {
+            try
+            {
+                var cd = dataContext.NHAXUATBANs.SingleOrDefault(c => c.MaNXB == maCD);
+                dataContext.NHAXUATBANs.DeleteOnSubmit(cd);
+
+                dataContext.SubmitChanges();
+                return Json(new { code = 200, msg = "Xóa nxb thành công." }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                {
+                    return Json(new { code = 500, msg = "Xóa nxb không  thành công. Lỗi " + ex.Message }, JsonRequestBehavior.AllowGet);
+
+                }
+            }
+        }
+
         public ActionResult ThemMoi()
         {
             return View();

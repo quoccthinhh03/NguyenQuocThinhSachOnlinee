@@ -137,6 +137,7 @@
     <Compile Include="Areas\Admin\Controllers\FileAndMailController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\KhachHangController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MenuController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhaXuatBanController.cs" />
     <Compile Include="Areas\Admin\Controllers\SachController.cs" />
     <Compile Include="Areas\Admin\Controllers\TrangTinController.cs" />
@@ -683,6 +684,9 @@
     <Content Include="Areas\Admin\Views\TrangTin\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\ChuDee\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ChuDee\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\ChildMenu.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\ChildMenu1.cshtml" />
     <None Include="Models\SachOnl.dbml.layout">
       <DependentUpon>SachOnl.dbml</DependentUpon>
     </None>
