@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using NguyenQuocThinhSachOnlinee.Models;
@@ -139,6 +141,45 @@ namespace NguyenQuocThinhSachOnlinee.Controllers
             ddh.MaKH = kh.MaKH;
             ddh.NgayDat = DateTime.Now;
 
+            string customerEmail = kh.Email;
+            
+
+            // Gửi email thông báo cho khách hàng
+            var fromAddress = new MailAddress("quocthinh5.v2003@gmail.com", "Đơn hàng ");
+            var toAddress = new MailAddress(customerEmail);
+            const string fromPassword = "uuiv yswn atcy yomu";
+            const string subject = "Đơn hàng đã được đặt thành công";
+            string body = $"Chào bạn {kh.HoTen},\n\n";
+            body += "Cảm ơn bạn đã đặt hàng! Đơn hàng của bạn đã được đặt thành công.\n";
+            body += "Chi tiết đơn hàng:\n\n";
+
+            foreach (var item in lstGioHang)
+            {
+                body += $"{item.iSoLuong} x {item.sTenSach}: {item.dDonGia:C}\n";
+            }
+
+            body += $"\nTổng cộng: {TongTien():C}\n\n";
+     
+            body += "Cảm ơn bạn đã mua sắm tại cửa hàng chúng tôi!\n";
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body
+            })
+            {
+                smtp.Send(message);
+            }
             // Kiểm tra xem NgayGiao có giá trị hợp lệ hay không
             string ngayGiaoString = f["NgayGiao"];
             DateTime ngayGiao;

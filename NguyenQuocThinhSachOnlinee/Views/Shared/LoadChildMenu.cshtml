@@ -15,19 +15,20 @@
             }
             else
             {
-                if (item.MenuLink.Contains("://"))
-                {
+                <li>
+                    @if (@item.MenuLink.Contains("://"))
+                    {
                     <li><a href="@item.MenuLink">@item.MenuName</a></li>
                 }
-
                 else
                 {
                     <li><a href="~/@item.MenuLink">@item.MenuName</a></li>
                 }
+
+                    </li>
+                }
+                i++;
+
             }
-
-            i++;
-
-        }
-    @:</ul>
+        @:</ul>
 }

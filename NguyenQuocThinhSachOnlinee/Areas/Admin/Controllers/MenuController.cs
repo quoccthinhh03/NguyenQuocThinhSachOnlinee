@@ -10,7 +10,8 @@ namespace NguyenQuocThinhSachOnlinee.Areas.Admin.Controllers
     public class MenuController : Controller
     {
         // GET: Admin/Menu
-        SachOnlDataContext db=new SachOnlDataContext();
+        SachOnlDataContext db = new SachOnlDataContext();
+        // GET: Admin/Menu
         public ActionResult Index()
         {
             var listMenu = db.MENUs.Where(m => m.ParentId == null).OrderBy(m => m.OrderNumber).ToList();
