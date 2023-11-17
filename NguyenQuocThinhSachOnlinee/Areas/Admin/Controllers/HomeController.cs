@@ -1,8 +1,5 @@
 ﻿using NguyenQuocThinhSachOnlinee.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace NguyenQuocThinhSachOnlinee.Areas.Admin.Controllers
@@ -10,9 +7,16 @@ namespace NguyenQuocThinhSachOnlinee.Areas.Admin.Controllers
     public class HomeController : Controller
     {
         // GET: Admin/Home
-        SachOnlDataContext db   = new SachOnlDataContext();
+        SachOnlDataContext db = new SachOnlDataContext();
         public ActionResult Index()
         {
+            if (Session["Admin"] == null)
+            {
+                // If not authenticated, redirect to the login page
+                return RedirectToAction("Login", "Home");
+            }
+
+            // If authenticated, continue with the normal flow for the Index page
             return View();
         }
 

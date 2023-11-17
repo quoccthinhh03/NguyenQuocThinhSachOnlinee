@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using NguyenQuocThinhSachOnlinee.Models;
+using PagedList;
+using System;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using NguyenQuocThinhSachOnlinee.Models;
-using PagedList;
-using PagedList.Mvc;
-using System.IO;
 
 namespace NguyenQuocThinhSachOnlinee.Areas.Admin.Controllers
 {
@@ -90,22 +88,22 @@ namespace NguyenQuocThinhSachOnlinee.Areas.Admin.Controllers
             }
             return View(sach);
         }
-        [HttpPost,ActionName("Delete")]
-        public ActionResult DeleteConfirm(int id , FormCollection f)
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirm(int id, FormCollection f)
         {
-            var sach =db.SACHes.SingleOrDefault(n=>n.MaSach ==id);
-            if(sach == null)
+            var sach = db.SACHes.SingleOrDefault(n => n.MaSach == id);
+            if (sach == null)
             {
                 Response.StatusCode = 404;
                 return null;
             }
-            var ctdh=db.CHITIETDATHANGs.Where(ct=>ct.MaSach==id);
-            if(ctdh.Count()>0)
+            var ctdh = db.CHITIETDATHANGs.Where(ct => ct.MaSach == id);
+            if (ctdh.Count() > 0)
             {
                 ViewBag.ThongBao = "Sách này đang có trong bảng chi tiết đặt hàng <br>" + "Nếu muốn xóa thì phải xóa hết mã sách này trong bảng chi tiết đặt hàng";
                 return View(sach);
             }
-            var vietsach=db.VIETSACHes.Where(vs=>vs.MaSach==id).ToList();
+            var vietsach = db.VIETSACHes.Where(vs => vs.MaSach == id).ToList();
             if (vietsach != null)
             {
                 db.VIETSACHes.DeleteAllOnSubmit(vietsach);
@@ -119,19 +117,19 @@ namespace NguyenQuocThinhSachOnlinee.Areas.Admin.Controllers
         public ActionResult Edit(int id)
         {
             var sach = db.SACHes.SingleOrDefault(n => n.MaSach == id);
-            if(sach == null)
-             {
+            if (sach == null)
+            {
                 Response.StatusCode = 404;
                 return null;
             }
             ViewBag.MaCD = new SelectList(db.CHUDEs.ToList().OrderBy(n => n.TenChuDe), "MaCD", "TenChuDe", sach.MaCD);
-            ViewBag.MaNXB = new SelectList(db.NHAXUATBANs.ToList().OrderBy(n => n.TenNXB), "MaNXB", "TenNXB",sach.MaNXB);
+            ViewBag.MaNXB = new SelectList(db.NHAXUATBANs.ToList().OrderBy(n => n.TenNXB), "MaNXB", "TenNXB", sach.MaNXB);
             return View(sach);
 
         }
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Edit(FormCollection f,HttpPostedFileBase fFileUpload)
+        public ActionResult Edit(FormCollection f, HttpPostedFileBase fFileUpload)
         {
             var sach = db.SACHes.SingleOrDefault(n => n.MaSach == int.Parse(f["iMaSach"]));
             ViewBag.MaCD = new SelectList(db.CHUDEs.ToList().OrderBy(n => n.TenChuDe), "MaCD", "TenChuDe", sach.MaCD);
@@ -148,18 +146,18 @@ namespace NguyenQuocThinhSachOnlinee.Areas.Admin.Controllers
                     }
                     sach.AnhBia = sFileName;
                 }
-                    sach.TenSach = f["sTenSach"];
-                    sach.MoTa = f["sMoTa"];                 
-                    sach.NgayCapNhat = Convert.ToDateTime(f["dNgayCapNhat"]);
-                    sach.SoLuongBan = int.Parse(f["iSoLuong"]);
-                    sach.GiaBan = decimal.Parse(f["mGiaBan"]);
-                    sach.MaCD = int.Parse(f["MaCD"]);
-                    sach.MaNXB = int.Parse(f["MaNXB"]);
-                    
-                    db.SubmitChanges();
-                    return RedirectToAction("Index");
-                }
-            return View(sach);
+                sach.TenSach = f["sTenSach"];
+                sach.MoTa = f["sMoTa"];
+                sach.NgayCapNhat = Convert.ToDateTime(f["dNgayCapNhat"]);
+                sach.SoLuongBan = int.Parse(f["iSoLuong"]);
+                sach.GiaBan = decimal.Parse(f["mGiaBan"]);
+                sach.MaCD = int.Parse(f["MaCD"]);
+                sach.MaNXB = int.Parse(f["MaNXB"]);
+
+                db.SubmitChanges();
+                return RedirectToAction("Index");
             }
+            return View(sach);
         }
     }
+}

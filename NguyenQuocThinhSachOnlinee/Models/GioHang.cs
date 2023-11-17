@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web;
 
 namespace NguyenQuocThinhSachOnlinee.Models
 {
@@ -25,7 +23,7 @@ namespace NguyenQuocThinhSachOnlinee.Models
             sTenSach = s.TenSach;
             sAnhBia = s.AnhBia;
             dDonGia = double.Parse(s.GiaBan.ToString());
-            iSoLuong = 1;                               
+            iSoLuong = 1;
         }
         [Required(ErrorMessage = "Please select a delivery date.")]
         public DateTime? NgayGiao { get; set; }

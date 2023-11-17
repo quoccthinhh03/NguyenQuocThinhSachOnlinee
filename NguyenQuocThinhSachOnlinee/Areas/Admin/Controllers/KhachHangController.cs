@@ -1,9 +1,6 @@
 ﻿using NguyenQuocThinhSachOnlinee.Models;
 using System;
-using System.Collections.Generic;
-using System.Data.Linq;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace NguyenQuocThinhSachOnlinee.Areas.Admin.Controllers
@@ -51,7 +48,7 @@ namespace NguyenQuocThinhSachOnlinee.Areas.Admin.Controllers
             nxb.MatKhau = f["MatKhau"];
             nxb.Email = f["Email"];
             nxb.DiaChi = f["DiaChi"];
-            nxb.DienThoai=f["DienThoai"];
+            nxb.DienThoai = f["DienThoai"];
             nxb.NgaySinh = Convert.ToDateTime(f["NgaySinh"]);
             dataContext.SubmitChanges();
             return RedirectToAction("Index");

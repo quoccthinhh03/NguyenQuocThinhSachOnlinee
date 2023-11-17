@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace NguyenQuocThinhSachOnlinee.Models
 {
@@ -14,6 +11,6 @@ namespace NguyenQuocThinhSachOnlinee.Models
         public Nullable<decimal> Avg { get; set; }
         public Nullable<decimal> Max { get; set; }
         public Nullable<decimal> Min { get; set; }
-        
+
     }
 }

@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace NguyenQuocThinhSachOnlinee.Areas.Admin.Controllers
@@ -11,7 +10,6 @@ namespace NguyenQuocThinhSachOnlinee.Areas.Admin.Controllers
     {
         // GET: Admin/Menu
         SachOnlDataContext db = new SachOnlDataContext();
-        // GET: Admin/Menu
         public ActionResult Index()
         {
             var listMenu = db.MENUs.Where(m => m.ParentId == null).OrderBy(m => m.OrderNumber).ToList();
@@ -28,6 +26,8 @@ namespace NguyenQuocThinhSachOnlinee.Areas.Admin.Controllers
             ViewBag.TrangTin = tt;
             return View(listMenu);
         }
+
+
         [ChildActionOnly]
         public ActionResult ChildMenu(int parentId)
         {

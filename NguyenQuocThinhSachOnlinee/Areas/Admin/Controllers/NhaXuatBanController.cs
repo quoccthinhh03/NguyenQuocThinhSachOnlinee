@@ -1,12 +1,7 @@
 ﻿using NguyenQuocThinhSachOnlinee.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using PagedList;
-using PagedList.Mvc;
 
 namespace NguyenQuocThinhSachOnlinee.Areas.Admin.Controllers
 {
@@ -136,7 +131,7 @@ namespace NguyenQuocThinhSachOnlinee.Areas.Admin.Controllers
         }
         public NHAXUATBAN Lay1NXB(int maNXB)
         {
-          return  dataContext.NHAXUATBANs.Where(nxb => nxb.MaNXB == maNXB).SingleOrDefault();
+            return dataContext.NHAXUATBANs.Where(nxb => nxb.MaNXB == maNXB).SingleOrDefault();
         }
         public ActionResult ChiTiet()
         {
@@ -147,7 +142,7 @@ namespace NguyenQuocThinhSachOnlinee.Areas.Admin.Controllers
         public ActionResult SuaNXB()
         {
             var maNXB = Request.QueryString["MaNXB"];
-            return View("Sua",Lay1NXB(int.Parse(maNXB)));
+            return View("Sua", Lay1NXB(int.Parse(maNXB)));
         }
         public ActionResult Xoa()
         {
@@ -156,7 +151,8 @@ namespace NguyenQuocThinhSachOnlinee.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult SuaNXB(FormCollection f) {
+        public ActionResult SuaNXB(FormCollection f)
+        {
             var nxb = Lay1NXB(int.Parse(f["MaNXB"]));
             nxb.TenNXB = f["TenNXB"];
             nxb.DiaChi = f["DiaChi"];

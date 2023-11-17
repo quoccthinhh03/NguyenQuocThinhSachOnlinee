@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using NguyenQuocThinhSachOnlinee.Models;
+using System;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Web;
-using System.Web.Caching;
 using System.Web.Mvc;
-using NguyenQuocThinhSachOnlinee.Models;
 
 namespace NguyenQuocThinhSachOnlinee.Controllers
 {
@@ -24,7 +21,7 @@ namespace NguyenQuocThinhSachOnlinee.Controllers
         [HttpGet]
         public ActionResult DangNhap()
         {
-            
+
             return View();
         }
 
@@ -46,7 +43,7 @@ namespace NguyenQuocThinhSachOnlinee.Controllers
             }
             else
             {
-                KHACHHANG kh= dataContext.KHACHHANGs.SingleOrDefault(n => n.TaiKhoan == sTenDN && n.MatKhau == sMatkhau); 
+                KHACHHANG kh = dataContext.KHACHHANGs.SingleOrDefault(n => n.TaiKhoan == sTenDN && n.MatKhau == sMatkhau);
                 if (kh != null)
                 {
                     ViewBag.ThongBao = "Chúc mừng đăng nhập thành công";
@@ -63,8 +60,8 @@ namespace NguyenQuocThinhSachOnlinee.Controllers
                         Response.Cookies["MatKhau"].Expires = DateTime.Now.AddDays(-1);
                         Response.Cookies["MatKhau"].Expires = DateTime.Now.AddDays(-1);
                     }
-                    Session["tennd"] = kh.HoTen; 
-                    
+                    Session["tennd"] = kh.HoTen;
+
                     return RedirectToAction("GioHang", "GioHang");
                 }
                 else
@@ -72,9 +69,10 @@ namespace NguyenQuocThinhSachOnlinee.Controllers
                     ViewBag.ThongBao = "Tên đăng nhập hoặc mật khẩu không đúng";
                 }
 
-            }return View();
-          
-           
+            }
+            return View();
+
+
         }
         public ActionResult Thongtincanhan()
         {
@@ -129,15 +127,15 @@ namespace NguyenQuocThinhSachOnlinee.Controllers
         public static string GetMD5(string str)
         {
             MD5 md5 = new MD5CryptoServiceProvider();
-            byte[] fromData=Encoding.UTF8.GetBytes(str);
+            byte[] fromData = Encoding.UTF8.GetBytes(str);
             byte[] targetData = md5.ComputeHash(fromData);
             string byte2String = null;
-            for(int i=0;i<targetData.Length;i++)
+            for (int i = 0; i < targetData.Length; i++)
             {
                 byte2String += targetData[i].ToString("x2");
             }
             return byte2String;
         }
-      
+
     }
-}                                                           
+}

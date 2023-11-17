@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using NguyenQuocThinhSachOnlinee.Models;
+using System;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using NguyenQuocThinhSachOnlinee.Models;
-using PagedList;
-using PagedList.Mvc;
-using System.IO;
 
 namespace NguyenQuocThinhSachOnlinee.Areas.Admin.Controllers
 {
@@ -115,10 +110,10 @@ namespace NguyenQuocThinhSachOnlinee.Areas.Admin.Controllers
         public JsonResult Delete(int maCD)
         {
             try
-            {  
+            {
                 var cd = dataContext.CHUDEs.SingleOrDefault(c => c.MaCD == maCD);
                 dataContext.CHUDEs.DeleteOnSubmit(cd);
-               
+
                 dataContext.SubmitChanges();
                 return Json(new { code = 200, msg = "Xóa chủ đề thành công." }, JsonRequestBehavior.AllowGet);
             }

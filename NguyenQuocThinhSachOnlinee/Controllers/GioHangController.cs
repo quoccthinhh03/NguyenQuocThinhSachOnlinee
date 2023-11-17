@@ -1,11 +1,10 @@
-﻿using System;
+﻿using NguyenQuocThinhSachOnlinee.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Mail;
 using System.Net;
-using System.Web;
+using System.Net.Mail;
 using System.Web.Mvc;
-using NguyenQuocThinhSachOnlinee.Models;
 
 namespace NguyenQuocThinhSachOnlinee.Controllers
 {
@@ -132,7 +131,7 @@ namespace NguyenQuocThinhSachOnlinee.Controllers
         }
 
         [HttpPost]
-        
+
         public ActionResult DatHang(FormCollection f)
         {
             DONDATHANG ddh = new DONDATHANG();
@@ -142,7 +141,7 @@ namespace NguyenQuocThinhSachOnlinee.Controllers
             ddh.NgayDat = DateTime.Now;
 
             string customerEmail = kh.Email;
-            
+
 
             // Gửi email thông báo cho khách hàng
             var fromAddress = new MailAddress("quocthinh5.v2003@gmail.com", "Đơn hàng ");
@@ -159,7 +158,7 @@ namespace NguyenQuocThinhSachOnlinee.Controllers
             }
 
             body += $"\nTổng cộng: {TongTien():C}\n\n";
-     
+
             body += "Cảm ơn bạn đã mua sắm tại cửa hàng chúng tôi!\n";
 
             var smtp = new SmtpClient
@@ -214,7 +213,7 @@ namespace NguyenQuocThinhSachOnlinee.Controllers
                 return View(lstGioHang);
             }
 
-            return RedirectToAction("DatHang","Giohang");
+            return RedirectToAction("DatHang", "Giohang");
         }
 
 

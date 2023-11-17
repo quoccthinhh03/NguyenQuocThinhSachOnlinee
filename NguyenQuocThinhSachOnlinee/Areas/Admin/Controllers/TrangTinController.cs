@@ -1,9 +1,7 @@
 ﻿using NguyenQuocThinhSachOnlinee.Controllers;
 using NguyenQuocThinhSachOnlinee.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace NguyenQuocThinhSachOnlinee.Areas.Admin.Controllers
@@ -71,10 +69,10 @@ namespace NguyenQuocThinhSachOnlinee.Areas.Admin.Controllers
             var tt = from t in db.TRANGTINs where t.MaTT == id select t;
             return View(tt.SingleOrDefault());
         }
-        [HttpPost,ActionName("Delete")]
-        public  ActionResult DeleteConfirm(int id)
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirm(int id)
         {
-            var tt=(from t in db.TRANGTINs where t.MaTT ==id     select t).SingleOrDefault();
+            var tt = (from t in db.TRANGTINs where t.MaTT == id select t).SingleOrDefault();
             db.TRANGTINs.DeleteOnSubmit(tt);
             db.SubmitChanges();
             return RedirectToAction("Index");

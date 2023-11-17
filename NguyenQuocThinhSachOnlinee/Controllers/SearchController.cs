@@ -1,14 +1,10 @@
 ﻿using NguyenQuocThinhSachOnlinee.Models;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Web;
-using System.Web.Mvc;
-using PagedList;
-using PagedList.Mvc;
 using System.Linq.Dynamic;
-using System.Linq.Expressions;
+using System.Web.Mvc;
 
 
 namespace NguyenQuocThinhSachOnlinee.Controllers
@@ -34,8 +30,8 @@ namespace NguyenQuocThinhSachOnlinee.Controllers
             return View(searchResults.ToList());
         }
 
-      
-     
+
+
 
         public ActionResult Group()
         {
@@ -75,7 +71,7 @@ namespace NguyenQuocThinhSachOnlinee.Controllers
             }
             return RedirectToAction("Index");
         }
-       
+
         public ActionResult SearchPhanTrangTuyChon(int? page, int? size, string strSearch = null)
         {
             List<SelectListItem> items = new List<SelectListItem>();
@@ -122,14 +118,14 @@ namespace NguyenQuocThinhSachOnlinee.Controllers
                     sortProperty = "TenSach";
                 ViewBag.SortProperty = sortProperty;
                 var kq = from s in db.SACHes where s.TenSach.Contains(strSearch) || s.MoTa.Contains(strSearch) select s;
-               // if (sortOrder == "desc")
+                // if (sortOrder == "desc")
                 //{
-                   kq = kq.OrderBy(sortProperty + " desc" + sortOrder);
-               // }
-              // else
-               // {
-                 //   kq = kq.OrderBy(sortProperty);
-               // }
+                kq = kq.OrderBy(sortProperty + " desc" + sortOrder);
+                // }
+                // else
+                // {
+                //   kq = kq.OrderBy(sortProperty);
+                // }
                 return View(kq.ToPagedList(iPageNumber, iSize));
 
             }

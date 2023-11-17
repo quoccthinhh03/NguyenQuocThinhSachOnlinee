@@ -2,17 +2,17 @@
 
 namespace NguyenQuocThinhSachOnlinee.Areas.Index
 {
-    public class IndexAreaRegistration : AreaRegistration 
+    public class IndexAreaRegistration : AreaRegistration
     {
-        public override string AreaName 
+        public override string AreaName
         {
-            get 
+            get
             {
                 return "Index";
             }
         }
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
                 "Index_default",

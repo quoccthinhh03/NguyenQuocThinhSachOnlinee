@@ -1,10 +1,10 @@
-﻿
+﻿﻿@model IEnumerable<NguyenQuocThinhSachOnlinee.Models.MENU>
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
-}
 
-﻿@model IEnumerable<NguyenQuocThinhSachOnlinee.Models.MENU>
+}
 
 
 <div class="row">
@@ -49,8 +49,10 @@
                         </fieldset>
                     }
                     <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Chọn menu Cha</button>
-                        <ul class="dropdown-menu">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Chọn menu Cha
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             @{
                                 int j = 0;
                                 foreach (var item in Model)
@@ -69,6 +71,7 @@
                             }
                         </ul>
                     </div>
+
 
                     <div>Số thứ tự: <input type="number" required name="Number" value="1" min="1" /></div>
                     <fieldset class="form-group">
@@ -110,6 +113,7 @@
                             }
                         </ul>
                     </div>
+
                     <div>Số thứ tự: <input type="number" required name="Number1" value="1" min="1" /></div>
                     <fieldset class="form-group">
                         <input type="submit" name="ThemTrang" value="Thêm" class="btn btn-success form-control" />
@@ -145,6 +149,7 @@
                             }
                         </ul>
                     </div>
+
                     <div>Số thứ tự: <input type="number" required name="Number2" value="1" min="1" /></div>
                     <fieldset class="form-group">
                         <input type="submit" name="ThemLink" value="Thêm" class="btn btn-success form-control" />
@@ -268,4 +273,3 @@
         })
     </script>
 }
-
